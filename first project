@@ -1,0 +1,67 @@
+#include <iostream>
+#include <string>
+int main() {
+    //This program is used to analyse the store's sales and inventory
+    //c++ is a compiled language
+    //Declaring variables for a product details
+    int product_catagory;
+    int initial_inventory_quantity;
+    float product_price_per_unit;
+    product_price_per_unit = 10.5f;
+    int number_of_items_sold;
+    std::string inventory_status;
+    //Defining a constant
+    const double tax_rate = 9.9;
+    std::string product_name;
+    //The printed out prompts for the user
+    std::cout<<"What is the product name?";
+    std::cin>>product_name;
+    std::cout<<"What is the product catagory?";
+    std::cin>>product_catagory;
+    std::cout<<"What is the initial inventory quantity?";
+    std::cin>>initial_inventory_quantity;
+    std::cout<<"What is the number of items sold?";
+    std::cin>>number_of_items_sold;
+    //Declaring variables for computed values
+    int new_inventory = initial_inventory_quantity - number_of_items_sold;
+    float total_sales = number_of_items_sold * product_price_per_unit;
+    if (new_inventory < 10)
+        std::cout << "The inventory status is low!"<<std::endl;
+    else
+        std::cout<< "Sufficient inventory!"<<std::endl;
+    if (0< product_catagory < 6)
+        std::cout<<"valid"<<std::endl;
+    else
+        std::cout<<"invalid"<<std::endl;
+    switch(product_catagory){
+    case 1:
+        std::cout<<"Category 1: Electronics"<<std::endl;
+        break;
+    case 2:
+        std::cout<<"Category 2: Groceries"<<std::endl;
+        break;
+    case 3:
+        std::cout<<"Category 3: Clothing"<<std::endl;
+        break;
+    case 4:
+        std::cout<<"Category 4: Stationary"<<std::endl;
+        break;
+    case 5:
+        std::cout<<"Category 5: Miscellaneous"<<std::endl;
+        break;
+    default: 
+        std::cout<<"It is not Within 1-5!"<<std::endl;
+    }
+    //forloop counting up from 1 to the number of items sold
+    std::cout<<"Count: ";
+    for(int i = number_of_items_sold; i>0; i++) 
+    {
+        std::cout<<i<<" ";
+    }
+    std::cout<<"Off!"<<std::endl;
+        std::cout<<"Tax Rate: "<<tax_rate<<std::endl;
+        std::cout<<"New Inventory: "<<new_inventory<<"\nTotal Sales: "<<total_sales<<std::endl;
+        std::cout<<"Inventory status: "<<inventory_status<<std::endl;
+        std::cout<<"Product name: "<<product_name<<"Product catagory: "<<product_catagory<<"Initial inventory quantity: "<<initial_inventory_quantity<<"Number of items sold: "<<number_of_items_sold<<std::endl;
+    return 0;
+}
