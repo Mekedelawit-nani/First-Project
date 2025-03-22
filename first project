@@ -1,34 +1,62 @@
 #include <iostream>
 #include <string>
+#define TAXRATE 9.9 //define a constant Tax rate
 int main() {
     //This program is used to analyse the store's sales and inventory
     //c++ is a compiled language
+    
     //Declaring variables for a product details
+    std::string product_name;
     int product_catagory;
     int initial_inventory_quantity;
     float product_price_per_unit;
-    product_price_per_unit = 10.5f;
     int number_of_items_sold;
-    std::string inventory_status;
-    //Defining a constant
-    const double tax_rate = 9.9;
-    std::string product_name;
-    //The printed out prompts for the user
-    std::cout<<"What is the product name?";
-    std::cin>>product_name;
-    std::cout<<"What is the product catagory?";
-    std::cin>>product_catagory;
-    std::cout<<"What is the initial inventory quantity?";
-    std::cin>>initial_inventory_quantity;
-    std::cout<<"What is the number of items sold?";
-    std::cin>>number_of_items_sold;
+
     //Declaring variables for computed values
-    int new_inventory = initial_inventory_quantity - number_of_items_sold;
-    float total_sales = number_of_items_sold * product_price_per_unit;
-    if (new_inventory < 10)
-        std::cout << "The inventory status is low!"<<std::endl;
-    else
-        std::cout<< "Sufficient inventory!"<<std::endl;
+    int new_inventory;
+    float total_sales;
+   
+    //Let us demonstrate different initalization methods:
+    //direct initialization
+    int cactus = 5;
+    //assignment after declaration
+    float cactus_size;
+    cactus_size = 5.5;
+    //list initialization
+    int cactus_catagory{5};
+   
+    //Defining a constant
+    const double Tax_rate = 9.9;
+    
+    //The printed out prompts for the user
+    std::cout<<"What is the product name(give a single word)?  ";
+    std::cin>>product_name;
+    std::cout<<"What is the product catagory(an intiger from 1 to 5)?  ";
+    std::cin>>product_catagory;
+    std::cout<<"What is the initial inventory quantity? ";
+    std::cin>>initial_inventory_quantity;
+    std::cout<<"What is the product_price_per_unit?  ";
+    std::cin>>product_price_per_unit;
+    std::cout<<"What is the number of items sold?  ";
+    std::cin>>number_of_items_sold;
+
+    //calculations
+    new_inventory = initial_inventory_quantity;
+    new_inventory -= number_of_items_sold;
+    total_sales = number_of_items_sold * product_price_per_unit;
+    std::string inventory_status;
+    if (new_inventory < 10){
+        inventory_status = "Low Inventory";
+    }
+    else{
+        inventory_status = "Sufficient Inventory";
+    }
+
+    //Extra helper variables using type deduction
+    auto total_sales_amount = total_sales;
+    decltype(initial_inventory_quantity)initial_inventory = 100;
+
+    //flow control
     if (0< product_catagory < 6)
         std::cout<<"valid"<<std::endl;
     else
@@ -52,16 +80,22 @@ int main() {
     default: 
         std::cout<<"It is not Within 1-5!"<<std::endl;
     }
-    //forloop counting up from 1 to the number of items sold
-    std::cout<<"Count: ";
-    for(int i = number_of_items_sold; i>0; i++) 
+   
+    //forloop for the receipt
+    std::cout<<"Price: "<<"\n";
+    for(int i = 1; i <= number_of_items_sold; ++i) 
     {
-        std::cout<<i<<" ";
+        std::cout<<"Item "<<i<<": $"<<product_price_per_unit<<std::endl;
     }
-    std::cout<<"Off!"<<std::endl;
-        std::cout<<"Tax Rate: "<<tax_rate<<std::endl;
-        std::cout<<"New Inventory: "<<new_inventory<<"\nTotal Sales: "<<total_sales<<std::endl;
+    
+    //output all information
+        std::cout<<"Tax Rate using const: "<<Tax_rate<<std::endl;
+        std::cout<<"Tax Rate using #define: "<<TAXRATE<<std::endl;
+        std::cout<<"The Product name: "<<product_name<<" ,the Product catagory: "<<product_catagory<<" ,the Initial inventory quantity: "<<initial_inventory_quantity<<" ,the Number of items sold: "<<number_of_items_sold<<std::endl;
+        std::cout<<"New Inventory: "<<new_inventory<<"\nTotal Sales: $"<<total_sales<<std::endl;
         std::cout<<"Inventory status: "<<inventory_status<<std::endl;
-        std::cout<<"Product name: "<<product_name<<"Product catagory: "<<product_catagory<<"Initial inventory quantity: "<<initial_inventory_quantity<<"Number of items sold: "<<number_of_items_sold<<std::endl;
+        std::cout<<"Helper variable Values:"<<std::endl;
+        std::cout<<"Total sales amount: "<<total_sales_amount<<" and Initial inventory: "<<initial_inventory<<std::endl;
+        
     return 0;
 }
